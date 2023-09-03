@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row pt-3">
+        <section class="col-3">
+          <h4 class="text-danger">sorting</h4>
+          <select class="form-select" aria-label="Default select example"(change)="sortSelect($event)">
+            <option *ngFor="let item of sortOption" [value]="item.value">{{item.name}}</option>
+
+          </select>
+          <div class="pt-5">
+          <h4 class="text-danger ">Categories</h4>
+          <ul class="list-group"*ngFor="let item of category">
+            <li class="list-group-item"
+            (click)="OnCategorySelect(item.id)"
+            style="cursor: pointer;"
+            [class.active]="item.id===categoryIdSelected"
+            aria-current="true">{{item.name}}</li>
+           
+          </ul>
+        </div>
+        </section>
+   <section class="col-9">
+    <div class="d-flex justify-content-between align-items-center  pt-3">
+        <div class="col-3">
+            <span> showing <strong>3</strong> of <strong>15</strong></span>
+        </div>
+        <div class="col-9">
+            <div class="input-group">
+                <input type="text" (keyup.enter)="OnSerach(serach.value)" (keyup)="OnSerach(serach.value)" #serach  class="form-control mr-2" placeholder="Search...." name="" id="">
+                <button class="btn btn-info" (click)="OnSerach(serach.value)">Search</button>
+                <button class="btn btn-dark" (click)="Reset()">Reset</button>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-3" >
+      <div class="col-md-4" *ngFor="let item of prodect">
+       <app-shop-item [prodects]="item"></app-shop-item>
+      </div>
+      </div>
+
+  <!-- pager -->
+  <div class="pt-5 d-flex justify-content-center align-items-center">
+  <app-pagerr
+  [pageSize]="pageSize"
+  [totalNumber]="totalNumber"
+  (PageChang)="onPageChang($event)"
+  ></app-pagerr></div>
+   </section>
+    </div>
+</div>  
